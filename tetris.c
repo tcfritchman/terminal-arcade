@@ -219,6 +219,10 @@ int move_piece_down() {
     return 0;
 }
 
+u_int16_t *get_grid_buffer() {
+    return grid_buffer;
+}
+
 void rotate_piece(int direction) {
     if (direction != -1 && direction != 1) return;
     // Rotate resulting in wall collision should bump the piece over.
@@ -242,41 +246,41 @@ void rotate_piece(int direction) {
     game_data.curr_piece_conf = new_conf;
 }
 
-int main(int argc, char *argv[]) {
-    srand(time(NULL));
-    reset_game();
+// int main(int argc, char *argv[]) {
+//     srand(time(NULL));
+//     reset_game();
 
-    char buf[INPUT_BUFFER_SIZE];
+//     char buf[INPUT_BUFFER_SIZE];
 
-    while (1) {
-        for (int i = 0; i < 1; i++) { // "Frames" per drop
-            draw();
-            debug_print_buf();
-            fgets(buf, INPUT_BUFFER_SIZE, stdin);
-            for (int j = 0; j < INPUT_BUFFER_SIZE; j++) {
-                char input = buf[j];
-                buf[j] = ' ';
-                switch (input) {
-                    case 'w':
-                        rotate_piece(1);
-                        break;
-                    case 'a':
-                        move_piece_horizontal(-1);
-                        break;
-                    case 's':
-                        // TODO: Move downward
-                        break;
-                    case 'd':
-                        move_piece_horizontal(1);
-                }
-            }
-            // usleep(50000);
-        }
-        int is_piece_finished = move_piece_down();
-        if (is_piece_finished) {
-            add_fixed_piece();
-            clear_rows();
-            setup_next_piece();
-        }
-    }
-}
+//     while (1) {
+//         for (int i = 0; i < 1; i++) { // "Frames" per drop
+//             draw();
+//             debug_print_buf();
+//             fgets(buf, INPUT_BUFFER_SIZE, stdin);
+//             for (int j = 0; j < INPUT_BUFFER_SIZE; j++) {
+//                 char input = buf[j];
+//                 buf[j] = ' ';
+//                 switch (input) {
+//                     case 'w':
+//                         rotate_piece(1);
+//                         break;
+//                     case 'a':
+//                         move_piece_horizontal(-1);
+//                         break;
+//                     case 's':
+//                         // TODO: Move downward
+//                         break;
+//                     case 'd':
+//                         move_piece_horizontal(1);
+//                 }
+//             }
+//             // usleep(50000);
+//         }
+//         int is_piece_finished = move_piece_down();
+//         if (is_piece_finished) {
+//             add_fixed_piece();
+//             clear_rows();
+//             setup_next_piece();
+//         }
+//     }
+// }

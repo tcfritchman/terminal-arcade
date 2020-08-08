@@ -58,17 +58,9 @@ void display_update(frame_data *f) {
 		int row = i / screen_width;
 		wattron(win, COLOR_PAIR(f->pixels[i]));
 		wmove(win, row, col * 2);
-		if (COLOR_BLACK == f->pixels[i]) {
-			wdelch(win);
-		} else {
-			waddch(win, ACS_CKBOARD);
-		}
+		waddch(win, ACS_CKBOARD);
 		wmove(win, row, col * 2 + 1);
-		if (COLOR_BLACK == f->pixels[i]) {
-			wdelch(win);
-		} else {
-			waddch(win, ACS_CKBOARD);
-		}
+		waddch(win, ACS_CKBOARD);
 		wattroff(win, COLOR_PAIR(f->pixels[i]));
 	}
 
