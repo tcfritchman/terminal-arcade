@@ -1,7 +1,8 @@
-#include "display.h"
 #include <ncurses.h>
 #include <stdio.h>
 #include <errno.h>
+
+#include "display.h"
 
 #define TEXT_COLOR_PAIR 8 // After solid colors 0-7
 

@@ -3,14 +3,7 @@
 #include <time.h>
 #include <unistd.h>
 
-#define GRID_WIDTH 16
-#define GRID_HEIGHT 23
-#define QUEUE_SIZE 2
-#define NUM_SHAPES 7
-#define SHAPE_WIDTH 4
-#define START_POS 6
-#define MARGIN_WIDTH 3
-#define INPUT_BUFFER_SIZE 10
+#include "tetris.h"
 
 u_int16_t piece_configs[NUM_SHAPES][4] = {
     // Bits representing the 4x4 grid for each of the 7 shapes.
@@ -66,7 +59,6 @@ u_int16_t piece_configs[NUM_SHAPES][4] = {
         0b0000111001000000,
         0b0100110001000000
     }
-    // TODO: Remaining shapes
 };
 
 struct {
@@ -245,42 +237,3 @@ void rotate_piece(int direction) {
     game_data.curr_piece_position = new_pos;
     game_data.curr_piece_conf = new_conf;
 }
-
-// int main(int argc, char *argv[]) {
-//     srand(time(NULL));
-//     reset_game();
-
-//     char buf[INPUT_BUFFER_SIZE];
-
-//     while (1) {
-//         for (int i = 0; i < 1; i++) { // "Frames" per drop
-//             draw();
-//             debug_print_buf();
-//             fgets(buf, INPUT_BUFFER_SIZE, stdin);
-//             for (int j = 0; j < INPUT_BUFFER_SIZE; j++) {
-//                 char input = buf[j];
-//                 buf[j] = ' ';
-//                 switch (input) {
-//                     case 'w':
-//                         rotate_piece(1);
-//                         break;
-//                     case 'a':
-//                         move_piece_horizontal(-1);
-//                         break;
-//                     case 's':
-//                         // TODO: Move downward
-//                         break;
-//                     case 'd':
-//                         move_piece_horizontal(1);
-//                 }
-//             }
-//             // usleep(50000);
-//         }
-//         int is_piece_finished = move_piece_down();
-//         if (is_piece_finished) {
-//             add_fixed_piece();
-//             clear_rows();
-//             setup_next_piece();
-//         }
-//     }
-// }

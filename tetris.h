@@ -1,5 +1,13 @@
 #include <stdlib.h>
 
+#define GRID_WIDTH 16
+#define GRID_HEIGHT 23
+#define QUEUE_SIZE 2
+#define NUM_SHAPES 7
+#define SHAPE_WIDTH 4
+#define START_POS 6
+#define MARGIN_WIDTH 3
+
 void setup_next_piece();
 void remove_row(int row_id);
 void clear_rows();
